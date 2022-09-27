@@ -1,8 +1,8 @@
-### PHP Tutorial
+## PHP Tutorial
 
 The PHP Hypertext Preprocessor (PHP) is a programming language that ***allows web developers to create dynamic content that interacts with databases***. PHP is basically used for ***developing web based software applications***. This tutorial helps you to build your base with PHP.
 
-#### Why to Learn PHP?
+### Why to Learn PHP?
 
 PHP started as a small open source project that evolved as more and more people found out how useful it was. **Rasmus Lerdorf** unleashed the first version of PHP way back in 1994.
 
@@ -16,7 +16,7 @@ PHP is a MUST for students and working professionals to become a great Software 
 - PHP is forgiving: PHP language tries to be as forgiving as possible.
 - PHP Syntax is C-Like.
 
-#### Characteristics of PHP
+### Characteristics
 
 Five important characteristics make PHP's practical nature possible.
 
@@ -26,7 +26,7 @@ Five important characteristics make PHP's practical nature possible.
 - Flexibility
 - Familiarity
 
-#### Applications of PHP
+### Applications
 
 As mentioned before, PHP is one of the most widely used language over the web. I'm going to list few of them here:
 
