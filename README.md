@@ -1,10 +1,10 @@
 ### PHP Tutorial
 
-The PHP Hypertext Preprocessor (PHP) is a programming language that allows web developers to create dynamic content that interacts with databases. PHP is basically used for developing web based software applications. This tutorial helps you to build your base with PHP.
+The PHP Hypertext Preprocessor (PHP) is a programming language that ***allows web developers to create dynamic content that interacts with databases***. PHP is basically used for ***developing web based software applications***. This tutorial helps you to build your base with PHP.
 
 #### Why to Learn PHP?
 
-PHP started out as a small open source project that evolved as more and more people found out how useful it was. Rasmus Lerdorf unleashed the first version of PHP way back in 1994.
+PHP started as a small open source project that evolved as more and more people found out how useful it was. **Rasmus Lerdorf** unleashed the first version of PHP way back in 1994.
 
 PHP is a MUST for students and working professionals to become a great Software Engineer specially when they are working in Web Development Domain. I will list down some of the key advantages of learning PHP:
 
