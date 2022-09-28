@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Predefined</title>
+        <title>Predefined Variables</title>
     </head>
     <body>
         <?php
