@@ -64,7 +64,7 @@ if (($year %  400  ==  0 ) || (($year %  100  !=  0 ) && ($year %  4  ==  0 ))){
 echo "<br>";  // 2014 is not a leap year.
 
 
-// PHP string operators
+// PHP String Operators
 $x =  "Hello" ;
 $y =  " World!" ;
 echo  $x . $y;  // output: Hello World!
@@ -96,21 +96,23 @@ echo "<br>";
 var_dump($x !== $y);   // output: boolean true 
 echo "<br>";  
 
-// compare integers 
+// Compare Integers 
 echo  1  <=>  1 ;  // output: 0 
 echo "<br>";  
 echo  1  <=>  2 ;  // output: -1 
 echo "<br>";  
 echo  2  <=>  1 ;  // output: 1
 echo "<br>";  
-// Compare floating point numbers 
+
+// Compare Floating Point Numbers 
 echo  1.5  <=>  1.5 ;  // output: 0 
 echo "<br>";  
 echo  1.5  <=>  2.5 ;  // output: -1 
 echo "<br>";  
 echo  2.5  <=>  1.5 ;  // output: 1
 echo "<br>";  
-// compare strings 
+
+// Compare Strings 
 echo  "x"  <=>  "x" ;  // output: 0 
 echo "<br>";  
 echo  "x"  <=>  "y" ;  // output: -1 
@@ -118,7 +120,7 @@ echo "<br>";
 echo  "y"  <=>  "x" ;  // output: 1 
 echo "<br>";  
 
-// The executed result is as follows;
+// The execution result is as follows;
 // 14
 // 6
 // 40
@@ -150,7 +152,7 @@ echo "<br>";
 // bool(true)
 // 0
 // -1
-// 1
+// 1 
 // 0
 // -1
 // 1
