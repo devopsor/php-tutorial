@@ -34,3 +34,7 @@ switch ($today) {
         echo "No information available today.";
         break;
 }
+
+// The execution results are as follows:
+
+// Today is Saturday. Time for a movie.

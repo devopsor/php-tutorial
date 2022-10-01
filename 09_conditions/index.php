@@ -47,3 +47,11 @@ echo "<br>";
 
 echo $_GET["name"] ?? "anonymous";
 echo "<br>";
+
+// The execution result is as follows:
+// Today is Sat!
+// Today is Sat!
+// You are Childen
+// Children
+// Jack    // http://localhost/php_tutorial/09_conditions/?name=Jack
+// Jack    // http://localhost/php_tutorial/09_conditions/?name=Jack

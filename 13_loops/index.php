@@ -1,78 +1,87 @@
 <?php
 
-// What is a string in PHP
+// PHP loop
 
-// A string is a sequence of letters, numbers, special characters and arithmetic values ​​or a combination of all elements. 
-// The easiest way to create a string is to enclose string literals (that is, string characters) in single quotes ('), like this:
+// In this tutorial, you will learn how to use loops in PHP to repeat a series of operations.
 
-// $my_string = 'Hello world';
+// Different types of loops in PHP
+// A loop can execute the same block of code over and over again as long as certain conditions are met.
+// The basic idea of ​​loops is to automate repetitive tasks in a program to save time and effort.
+// PHP supports four different types of loops.
 
-// Double quotes (") can also be used. 
-// However, single and double quotes work differently. 
+// while   — Loops through a block of code as long as the specified condition evaluates to true.
+// do…while   — execute a block of code once, then evaluate the condition.
+// If the condition is true, the statement is repeated as long as the specified condition is true.
+// for   — Iterates over a block of code until the counter reaches the specified number.
+// foreach   — A block of code that iterates over each element in an array.
 
-// Strings enclosed in single quotes are treated almost literally, while strings delimited by double quotes 
-// are represented by strings of variable values Form substitution variables, and specifically interpret certain escape sequences.
+// You will also learn how to use foreach() to loop through the values ​​of an array at the end of this chapter.
+// The foreach() loop is designed for use with arrays.
 
-// The escape sequence is replaced with:
-// \n is replaced by a newline
-// \r is replaced by a carriage return
-// \t is replaced by a tab
-// \$ is replaced by the dollar sign itself ($)
-// \" is replaced by a double quote (")
-// \\ is replaced by a single backslash (\)
-// Here is an example to illustrate the difference between single and double quoted strings:
-
-$my_str =  'World' ;
-echo  "Hello, $my_str!<br>" ;         // Hello World! 
-echo  'Hello, $my_str!<br>' ;          // Hello, $my_str!
-
-echo '<pre>Hello\tWorld!</pre>';   // Hello\tWorld!
-echo "<pre>Hello\tWorld!</pre>";  //  Hello   World!
-echo 'I\'ll be back';                         //  I'll be back
+$i = 3;
+while ($i > 0) {
+    echo "This number is $i";
+    echo "<br>";
+    $i--;
+}
 echo "<br>";
 
-// PHP Manipulating Strings
-$my_str = "Welcome to www.google.com";
-echo strlen($my_str);
+// This number is 3
+// This number is 2
+// This number is 1
+
+$i = 3;
+do {
+    echo "This number is $i";
+    echo "<br>";
+    $i--;
+} while ($i > 0);
 echo "<br>";
 
-// The str_word_count() function counts the number of words in a string.
-echo str_word_count($my_str);
+for ($i = 0; $i < 5; $i++) {
+    echo "This number is $i";
+    echo "<br>";
+}
 echo "<br>";
 
-// str_replace() - replaces text in a string
-$my_str =  "If the facts don't match the theory, change the facts. ";
-//Display replaced string 
-echo  str_replace( "fact" ,  "truth" , $my_str);
+$colors = array("Red", "Green", "Blue");
+foreach ($colors as $value) {
+    echo $value;
+    echo "<br>";
+}
 echo "<br>";
 
-// You can optionally pass a fourth parameter to the str_place() function, 
-// which is used to determine how many replacements the string has performed, as shown below.
-$my_str = 'If the facts do not fit the theory, change the facts.';
-// perform string replacement 
-echo  str_replace( "facts" ,  "truth" , $my_str, $count);
-echo "<br>";
-// Display the number of replacements performed 
-echo  "The text was replaced $count times." ;
-echo "<br>";
+$superhero = array(
+    "name" => "Peter Parker",
+    "email" => "peterparker@mail.com",
+    "age" => 18,
+);
 
-// strrev() - reverse the string
-$my_str = 'You can do anything, but not everything.';
-//Display the reversed string 
-echo  strrev($my_str);
-echo "<br>";
+//traverse $superhero array
+foreach ($superhero as $key => $value) {
+    echo $key . " : " . $value . "<br>";
+}
 
+// The exectuion result is follows:
 
-// The execution result is as follows;
+// This number is 3
+// This number is 2
+// This number is 1
 
-// Hello, World!
-// Hello, $my_str!
-// Hello\tWorld!
-// Hello	World!
-// I'll be back
-// 25
-// 5
-// If the truths don't match the theory, change the truths.
-// If the truth do not fit the theory, change the truth.
-// The text was replaced 2 times.
-// .gnihtyreve ton tub ,gnihtyna od nac uoY
+// This number is 3
+// This number is 2
+// This number is 1
+
+// This number is 0
+// This number is 1
+// This number is 2
+// This number is 3
+// This number is 4
+
+// Red
+// Green
+// Blue
+
+// name : Peter Parker
+// email : peterparker@mail.com
+// age : 18
