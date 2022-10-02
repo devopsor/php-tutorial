@@ -1,78 +1,222 @@
 <?php
 
-// What is a string in PHP
+// PHP function
 
-// A string is a sequence of letters, numbers, special characters and arithmetic values ​​or a combination of all elements. 
-// The easiest way to create a string is to enclose string literals (that is, string characters) in single quotes ('), like this:
+// In this tutorial, you will learn how to create your own custom function in PHP.
 
-// $my_string = 'Hello world';
-
-// Double quotes (") can also be used. 
-// However, single and double quotes work differently. 
-
-// Strings enclosed in single quotes are treated almost literally, while strings delimited by double quotes 
-// are represented by strings of variable values Form substitution variables, and specifically interpret certain escape sequences.
-
-// The escape sequence is replaced with:
-// \n is replaced by a newline
-// \r is replaced by a carriage return
-// \t is replaced by a tab
-// \$ is replaced by the dollar sign itself ($)
-// \" is replaced by a double quote (")
-// \\ is replaced by a single backslash (\)
-// Here is an example to illustrate the difference between single and double quoted strings:
-
-$my_str =  'World' ;
-echo  "Hello, $my_str!<br>" ;         // Hello World! 
-echo  'Hello, $my_str!<br>' ;          // Hello, $my_str!
-
-echo '<pre>Hello\tWorld!</pre>';   // Hello\tWorld!
-echo "<pre>Hello\tWorld!</pre>";  //  Hello   World!
-echo 'I\'ll be back';                         //  I'll be back
+//Define function
+function today()
+{
+    echo "Today is " . date('l', mktime());
+}
+//Call functions
+today();
 echo "<br>";
 
-// PHP Manipulating Strings
-$my_str = "Welcome to www.google.com";
-echo strlen($my_str);
+// Function with parameters
+function getSum1($num1, $num2)
+{
+    $sum = $num1 + $num2;
+    echo "The sum of the two numbers $num1 and $num2 is $sum";
+}
+getSum1(2, 3);
 echo "<br>";
 
-// The str_word_count() function counts the number of words in a string.
-echo str_word_count($my_str);
+// Function with optional parameters and default values
+//Define function
+function customFont($font, $size = 1.5)
+{
+    echo "<p style=\"font-family: $font; font-size: {$size}em;\">Hello, world !</p>";
+}
+
+//call function
+customFont("Arial", 2);
+customFont("Times", 3);
+customFont("Courier");
 echo "<br>";
 
-// str_replace() - replaces text in a string
-$my_str =  "If the facts don't match the theory, change the facts. ";
-//Display replaced string 
-echo  str_replace( "fact" ,  "truth" , $my_str);
+// Function with parameters
+function getSum2($num1, $num2)
+{
+    $sum = $num1 + $num2;
+    return $sum;
+}
+echo "The sum of the two numbers is " . getSum2(2, 3);
+
 echo "<br>";
 
-// You can optionally pass a fourth parameter to the str_place() function, 
-// which is used to determine how many replacements the string has performed, as shown below.
-$my_str = 'If the facts do not fit the theory, change the facts.';
-// perform string replacement 
-echo  str_replace( "facts" ,  "truth" , $my_str, $count);
+//Define function
+function divideNumbers($dividend, $divisor)
+{
+    $quotient = $dividend / $divisor;
+    $array = array($dividend, $divisor, $quotient);
+    return $array;
+}
+
+//Assign variables as arrays
+list($dividend, $divisor, $quotient1) = divideNumbers(10, 2);
+echo $dividend; // output: 10
 echo "<br>";
-// Display the number of replacements performed 
-echo  "The text was replaced $count times." ;
+echo $divisor; // output: 2
+echo "<br>";
+echo $quotient1; // output: 5
 echo "<br>";
 
-// strrev() - reverse the string
-$my_str = 'You can do anything, but not everything.';
-//Display the reversed string 
-echo  strrev($my_str);
+//Pass arguments to functions by reference
+
+// In PHP, there are two ways to pass parameters to functions: pass-by-value and pass-by-reference.
+// By default, function parameters are passed by value, so if the parameter value changes inside the function,
+// it will not be affected by outside the function. However, to allow functions to modify their parameters,
+// they must be passed by reference.
+
+/* define a function that multiplies a number
+and return the new value */
+function selfMultiply(&$number)
+{
+    $number *= $number;
+    return $number;
+}
+
+$mynum = 5;
+echo $mynum; // output: 5
+echo "<br>";
+selfMultiply($mynum);
+echo $mynum; // output: 25
 echo "<br>";
 
+// Understanding variable scope
 
-// The execution result is as follows;
+//Define function
+function test()
+{
+    $greet = "Hello World!";
+    echo $greet;
+}
+test(); // output: Hello World!
+echo "<br>";
+// echo $greet; //Notice: Undefined variable
+echo "<br>";
 
-// Hello, World!
-// Hello, $my_str!
-// Hello\tWorld!
-// Hello	World!
-// I'll be back
-// 25
+$greet = "Hello World!";
+//Define the function
+function test2()
+{
+    //  echo  $greet;    // Notice: Undefined variable
+}
+test2();
+echo $greet; // output: Hello World!
+echo "<br>";
+
+$greet = "Hello World1!";
+//Define the function
+function test3()
+{
+    global $greet;
+    echo $greet;
+}
+test3(); // output: Hello World1!
+echo "<br>";
+echo $greet; // output: Hello World1!
+echo "<br>";
+//Assign new value to variable
+$greet = "Goodbye";
+
+test3(); // output: Goodbye
+echo "<br>";
+echo $greet; // output: Goodbye
+echo "<br>";
+
+//Define nested array
+$species = array(
+    "birds" => array(
+        "Eagle",
+        "Parrot",
+        "Swan",
+    ),
+    "mammals" => array(
+        "Human",
+        "cat" => array(
+            "Lion",
+            "Tiger",
+            "Jaguar",
+        ),
+        "Elephant",
+        "Monkey",
+    ),
+    "reptiles" => array(
+        "snake" => array(
+            "Cobra" => array(
+                "King Cobra",
+                "Egyptian cobra",
+            ),
+            "Viper",
+            "Anaconda",
+        ),
+        "Crocodile",
+        "Dinosaur" => array(
+            "T-rex",
+            "Alamosaurus",
+        ),
+    ),
+);
+
+//Define recursive function
+function printValues​​($arr)
+{
+    global $count;
+    global $items;
+
+    //check if $arr is an array
+    if (!is_array($arr)) {
+        die("ERROR: Input is not an array");
+    }
+
+    /*
+    Traverse the array, if value itself is an array, call recursively
+    The function adds the found value to the array of output items,
+    and increment the counter by 1 for each value found
+     */
+    foreach ($arr as $a) {
+        if (is_array($a)) {
+            printValues​​($a);
+        } else {
+            $items[] = $a;
+            $count++;
+        }
+    }
+
+    //return the total count and values ​​in the array
+    return array('total' => $count, 'values' => $items);
+}
+
+// Calculate and print values ​​in nested arrays
+$result = printValues​​($species);
+echo $result['total'] . ' value(s) found: ';
+echo implode(', ', $result['values']);
+
+
+// The execution results are as follows:
+
+// Today is Sunday
+// The sum of the two numbers 2 and 3 is 5
+// Hello, world !
+
+// Hello, world !
+
+// Hello, world !
+
+
+// The sum of the two numbers is 5
+// 10
+// 2
 // 5
-// If the truths don't match the theory, change the truths.
-// If the truth do not fit the theory, change the truth.
-// The text was replaced 2 times.
-// .gnihtyreve ton tub ,gnihtyna od nac uoY
+// 5
+// 25
+// Hello World!
+
+// Hello World!
+// Hello World1!
+// Hello World1!
+// Goodbye
+// Goodbye
+// 16 value(s) found: Eagle, Parrot, Swan, Human, Lion, Tiger, Jaguar, Elephant, Monkey, King Cobra, Egyptian cobra, Viper, Anaconda, Crocodile, T-rex, Alamosaurus
