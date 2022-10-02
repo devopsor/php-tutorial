@@ -216,3 +216,28 @@ echo $obj2->public; // this line can be executed normally
 // echo $obj2->private; // undefined private
 // echo $obj2->protected; // this line will generate a fatal Error
 $obj2->printHello(); // prints Public, Protected2 and Undefined
+
+
+// The execution results are 
+// yahoo.com
+// object
+// Basic Tutorial Network
+// Tmall Mall
+// Google Search
+// www.cainiaojc.com
+// www.tmall.com
+// www.google.com
+// www.google.com/search
+
+// Constructor
+
+// DestructableClass
+// category1
+// Destructor DestructableClass
+// Public
+// Public
+// Protected
+// Private
+// PublicPublic
+// Protected2
+// Protected
