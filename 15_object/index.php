@@ -1,78 +1,218 @@
 <?php
 
-// What is a string in PHP
+// PHP Object Orientation
 
-// A string is a sequence of letters, numbers, special characters and arithmetic values ​​or a combination of all elements. 
-// The easiest way to create a string is to enclose string literals (that is, string characters) in single quotes ('), like this:
+// In object-oriented programming (English: Object-oriented programming, abbreviation: OOP),
+// an object is a whole composed of information and a description of the processing of the information,
+// which is an abstraction of the real world.
 
-// $my_string = 'Hello world';
+// There are three main properties of an object:
 
-// Double quotes (") can also be used. 
-// However, single and double quotes work differently. 
+// The behavior of the object: those operations can be applied to the object, turning on the light,
+// turning off the light is the behavior.
+// The shape of the object: how the object responds when those methods are applied, color, size, shape.
+// Representation of objects: The representation of objects is equivalent to an ID card,
+// specifically distinguishing what is different in the same behavior and state.
+// For example, Animal (animal) is an abstract class, we can be specific to a dog and a sheep,
+// and dogs and sheep are concrete objects, they have color attributes, can write, can run and other behavioral states.
+class Site
+{
+    /* member variables */
+    public $url;
+    public $title;
 
-// Strings enclosed in single quotes are treated almost literally, while strings delimited by double quotes 
-// are represented by strings of variable values Form substitution variables, and specifically interpret certain escape sequences.
+    /* Member function */
+    public function setUrl($par)
+    {
+        $this->url = $par;
+    }
 
-// The escape sequence is replaced with:
-// \n is replaced by a newline
-// \r is replaced by a carriage return
-// \t is replaced by a tab
-// \$ is replaced by the dollar sign itself ($)
-// \" is replaced by a double quote (")
-// \\ is replaced by a single backslash (\)
-// Here is an example to illustrate the difference between single and double quoted strings:
+    public function getUrl()
+    {
+        echo $this->url . PHP_EOL;
+    }
 
-$my_str =  'World' ;
-echo  "Hello, $my_str!<br>" ;         // Hello World! 
-echo  'Hello, $my_str!<br>' ;          // Hello, $my_str!
+    public function setTitle($par)
+    {
+        $this->title = $par;
+    }
 
-echo '<pre>Hello\tWorld!</pre>';   // Hello\tWorld!
-echo "<pre>Hello\tWorld!</pre>";  //  Hello   World!
-echo 'I\'ll be back';                         //  I'll be back
+    public function getTitle()
+    {
+        echo $this->title . PHP_EOL;
+    }
+}
+
+$yahoo = new Site;
+$yahoo->setUrl("yahoo.com");
+echo $yahoo->getUrl();
+echo "<br>";
+echo gettype($yahoo);
 echo "<br>";
 
-// PHP Manipulating Strings
-$my_str = "Welcome to www.google.com";
-echo strlen($my_str);
+/////////////////////////////////////Online example////////////////////////////////
+
+class Site1
+{
+    /* member variables */
+    private $url;
+    private $title;
+
+    /* Member function */
+    function setUrl($par)
+    {
+        $this->url = $par;
+    }
+
+    function getUrl()
+    {
+        echo $this->url . PHP_EOL;
+    }
+
+    function setTitle($par)
+    {
+        $this->title = $par;
+    }
+
+    function getTitle()
+    {
+        echo $this->title . PHP_EOL;
+    }
+}
+
+$nhooo = new Site1;
+$taobao = new Site1;
+$google = new Site1;
+
+// Call the member function to set the title and URL
+$nhooo->setTitle("Basic Tutorial Network");
+$taobao->setTitle("Tmall Mall");
+$google->setTitle("Google Search");
+
+$nhooo->setUrl('www.cainiaojc.com');
+$taobao->setUrl('www.tmall.com');
+$google->setUrl('www.google.com');
+
+// Call member function to get title and URL
+$nhooo->getTitle();
+echo "<br>";
+$taobao->getTitle();
+echo "<br>";
+$google->getTitle();
+echo "<br>";
+$nhooo->getUrl();
+echo "<br>";
+$taobao->getUrl();
+echo "<br>";
+$google->getUrl();
 echo "<br>";
 
-// The str_word_count() function counts the number of words in a string.
-echo str_word_count($my_str);
+/////////////////////////////////PHP constructor//////////////////////////////////////
+class Site2
+{
+
+    public function __construct($par1, $par2)
+    {
+        $this->url = $par1;
+        $this->title = $par2;
+    }
+
+    public function getSite()
+    {
+        echo $this->url . $this->title;
+    }
+}
+
+$site2 = new Site2('www.google.com', '/search');
+$site2->getSite();
+echo "<br>";
+echo "<br>";
+////////////////////////////////PHP destructor/////////////////////////////////////////
+class DestructableClass
+{
+    public function __construct()
+    {
+        print "Constructor<br>";
+        $this->name = "DestructableClass";
+    }
+    public function __destruct()
+    {
+        echo "<br>";
+        print "Destructor " . $this->name . "<br>";
+    }
+}
+$obj = new DestructableClass();
+echo "<br>";
+echo $obj->name;
 echo "<br>";
 
-// str_replace() - replaces text in a string
-$my_str =  "If the facts don't match the theory, change the facts. ";
-//Display replaced string 
-echo  str_replace( "fact" ,  "truth" , $my_str);
+////////////////////////////////Inherit//////////////////////////////////////////////////////
+// child class extends site category
+class ChildSite extends Site
+{
+    public $category;
+    public function setCate($par)
+    {
+        $this->category = $par;
+    }
+
+    public function getCate()
+    {
+        echo $this->category . PHP_EOL;
+    }
+}
+$child = new ChildSite;
+$child->setCate("category1");
+echo $child->getCate();
+
+/////////////////////////////////////////////Access control//////////////////////////////
+// PHP access control of properties or methods is achieved by
+// adding the keyword public (public), protected (protected) or private (private) in front.
+
+// public (public): public class members can be accessed anywhere.
+// protected (protected): protected class members can be accessed by itself and its subclasses and superclasses.
+// private (private): private class members can only be accessed by the class in which they are defined.
+class MyClass
+{
+    public $public = 'Public';
+    protected $protected = 'Protected';
+    private $private = 'Private';
+    public function printHello()
+    {
+        echo $this->public;
+        echo "<br>";
+        echo $this->protected;
+        echo "<br>";
+        echo $this->private;
+        echo "<br>";
+    }
+}
+$obj = new MyClass();
+echo $obj->public; // this line can be executed normally
 echo "<br>";
-
-// You can optionally pass a fourth parameter to the str_place() function, 
-// which is used to determine how many replacements the string has performed, as shown below.
-$my_str = 'If the facts do not fit the theory, change the facts.';
-// perform string replacement 
-echo  str_replace( "facts" ,  "truth" , $my_str, $count);
-echo "<br>";
-// Display the number of replacements performed 
-echo  "The text was replaced $count times." ;
-echo "<br>";
-
-// strrev() - reverse the string
-$my_str = 'You can do anything, but not everything.';
-//Display the reversed string 
-echo  strrev($my_str);
-echo "<br>";
-
-
-// The execution result is as follows;
-
-// Hello, World!
-// Hello, $my_str!
-// Hello\tWorld!
-// Hello	World!
-// I'll be back
-// 25
-// 5
-// If the truths don't match the theory, change the truths.
-// If the truth do not fit the theory, change the truth.
-// The text was replaced 2 times.
-// .gnihtyreve ton tub ,gnihtyna od nac uoY
+// echo $obj->protected; // this line will generate a fatal error
+// echo $obj->private; // this line also generates a fatal error
+$obj->printHello(); // prints Public, Protected and Private
+/**
+ *define MyClass2
+ */
+class MyClass2 extends MyClass
+{
+    // public and protected can be redefined, but private but not
+    protected $protected2 = 'Protected2';
+    public function printHello()
+    {
+        echo $this->public;
+        echo "<br>";
+        echo $this->protected2;
+        echo "<br>";
+        // echo $this->private;   // Notice: Undefined property: MyClass2
+        echo $this->protected;
+        echo "<br>";
+    }
+}
+$obj2 = new MyClass2();
+echo $obj2->public; // this line can be executed normally
+// echo $obj2->private; // undefined private
+// echo $obj2->protected; // this line will generate a fatal Error
+$obj2->printHello(); // prints Public, Protected2 and Undefined

@@ -80,6 +80,8 @@ function selfMultiply(&$number)
 $mynum = 5;
 echo $mynum; // output: 5
 echo "<br>";
+echo gettype($mynum);
+echo "<br>";
 selfMultiply($mynum);
 echo $mynum; // output: 25
 echo "<br>";
@@ -98,6 +100,8 @@ echo "<br>";
 echo "<br>";
 
 $greet = "Hello World!";
+echo gettype($greet);
+echo "<br>";
 //Define the function
 function test2()
 {
@@ -193,7 +197,10 @@ function printValues​​($arr)
 $result = printValues​​($species);
 echo $result['total'] . ' value(s) found: ';
 echo implode(', ', $result['values']);
+echo "<br>";
 
+
+echo gettype($result);
 
 // The execution results are as follows:
 
@@ -211,12 +218,15 @@ echo implode(', ', $result['values']);
 // 2
 // 5
 // 5
+// integer
 // 25
 // Hello World!
 
+// string
 // Hello World!
 // Hello World1!
 // Hello World1!
 // Goodbye
 // Goodbye
 // 16 value(s) found: Eagle, Parrot, Swan, Human, Lion, Tiger, Jaguar, Elephant, Monkey, King Cobra, Egyptian cobra, Viper, Anaconda, Crocodile, T-rex, Alamosaurus
+// array
