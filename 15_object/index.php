@@ -217,8 +217,212 @@ echo $obj2->public; // this line can be executed normally
 // echo $obj2->protected; // this line will generate a fatal Error
 $obj2->printHello(); // prints Public, Protected2 and Undefined
 
+///////////////////////////////////////////////////////interface///////////////////////////////////////////
+// declare an 'iTemplate' interface
+interface iTemplate
+{
+    public function setVariable($name, $var);
+    public function getHtml($template);
+}
+// Implement the interface
+class Template implements iTemplate
+{
+    private $vars = array();
 
-// The execution results are 
+    public function setVariable($name, $var)
+    {
+        $this->vars[$name] = $var;
+    }
+
+    public function getHtml($template)
+    {
+        foreach ($this->vars as $name => $value) {
+            $template = str_replace('{' . $name . '}', $value, $template);
+        }
+
+        return $template;
+    }
+}
+
+///////////////////////////////////////////////////////Constant///////////////////////////////////////////
+class MyClass3
+{
+    const constant = 'constant value';
+    public function showConstant()
+    {
+        echo self::constant . PHP_EOL;
+    }
+}
+echo MyClass3::constant . PHP_EOL; // constant value
+echo "<br>";
+$classname = "MyClass3";
+echo $classname::constant . PHP_EOL; // constant value
+echo "<br>";
+$class = new MyClass3();
+$class->showConstant(); // constant value
+echo "<br>";
+echo $class::constant . PHP_EOL; // constant value
+
+///////////////////////////////////////////////Abstract Class/////////////////////////////////////////
+abstract class AbstractClass
+{
+    // Force subclasses to define these methods
+    abstract protected function getValue();
+    abstract protected function prefixValue($prefix);
+    // normal method (non-abstract method)
+    public function printOut()
+    {
+        print $this->getValue() . PHP_EOL;
+    }
+}
+class ConcreteClass1 extends AbstractClass
+{
+    protected function getValue()
+    {
+        return "ConcreteClass1";
+    }
+    public function prefixValue($prefix)
+    {
+        return "{$prefix}ConcreteClass1";
+    }
+}
+class ConcreteClass2 extends AbstractClass
+{
+    public function getValue()
+    {
+        return "ConcreteClass2";
+    }
+    public function prefixValue($prefix)
+    {
+        return "{$prefix}ConcreteClass2";
+    }
+}
+echo "<br>";
+$class1 = new ConcreteClass1;
+$class1->printOut(); // ConcreteClass1
+echo "<br>";
+
+echo $class1->prefixValue('FOO_') . PHP_EOL; //FOO_ConcreteClass1
+echo "<br>";
+
+$class2 = new ConcreteClass2;
+$class2->printOut(); //ConcreteClass2
+echo "<br>";
+
+echo $class2->prefixValue('FOO_') . PHP_EOL; //FOO_ConcreteClass2
+echo "<br>";
+
+abstract class AbstractClass2
+{
+    // Our abstract method only needs to define the required parameters
+    abstract protected function prefixName($name);
+}
+class ConcreteClass3 extends AbstractClass2
+{
+    // Our subclass can define optional parameters not present in the superclass signature
+    public function prefixName($name, $separator = ".")
+    {
+        if ($name == "Pacman") {
+            $prefix = "Mr";
+        } elseif ($name == "Pacwoman") {
+            $prefix = "Mrs";
+        } else {
+            $prefix = "";
+        }
+        return "{$prefix}{$separator} {$name}";
+    }
+}
+$class = new ConcreteClass3;
+echo $class->prefixName("Pacman"), "<br>"; //Mr. Pacman
+echo $class->prefixName("Pacwoman"), "<br>"; //Mrs. Pacman
+
+//////////////////////////////////////////////////////////Static keyword/////////////////////////////////////////
+// By declaring a class property or method as static, it can be accessed directly without instantiating the class.
+// Static properties cannot be accessed through an instantiated object of a class (but static methods can).
+
+class Foo
+{
+    public static $my_static = 'foo';
+
+    public function staticValue()
+    {
+        return self::$my_static;
+    }
+}
+print Foo::$my_static . PHP_EOL; //foo
+echo "<br>";
+$foo = new Foo();
+print $foo->staticValue() . PHP_EOL; //foo
+echo "<br>";
+
+////////////////////////////////////////////////////Final keyword//////////////////////////////////////////////////
+// PHP 5 added a final keyword. If a method in the parent class is declared final,
+// the child class cannot override the method.
+
+class BaseClass
+{
+    public function test()
+    {
+        echo "BaseClass::test() called" . PHP_EOL;
+    }
+
+    final public function moreTesting()
+    { //the child class cannot override the method.
+        echo "BaseClass::moreTesting() called" . PHP_EOL;
+    }
+}
+class ChildClass extends BaseClass
+{
+    public function moreTesting1()
+    {
+        echo "ChildClass::moreTesting() called" . PHP_EOL;
+    }
+}
+echo "<br>";
+$childclass = new ChildClass;
+$childclass->moreTesting1(); //ChildClass::moreTesting() called
+print "<br>";
+print "<br>";
+//////////////////////////////////////////////Call the parent class constructor/////////////////////////////////////////////////
+// PHP does not automatically call the superclass's constructor in the subclass's constructor.
+// To execute the constructor of the parent class, you need to call parent::__construct()
+// in the constructor of the child class .
+
+class BaseClass1
+{
+    public function __construct()
+    {
+        print "Constructor in the BaseClass class" . PHP_EOL;
+        print "<br>";
+    }
+}
+class SubClass1 extends BaseClass1
+{
+    public function __construct()
+    {
+        parent::__construct(); // Subclass constructor cannot automatically call parent class constructor
+        print "Constructor in SubClass class" . PHP_EOL;
+        print "<br>";
+    }
+}
+class OtherSubClass1 extends BaseClass1
+{
+    // Inherit the constructor of BaseClass
+}
+// Call BaseClass constructor
+$obj = new BaseClass1();
+// Call BaseClass, SubClass constructor
+$obj = new SubClass1();
+// Call BaseClass constructor
+$obj = new OtherSubClass1();
+// Constructor in the BaseClass class
+// Constructor in the BaseClass class
+// Constructor in SubClass class
+// Constructor in the BaseClass class
+
+
+// The execution results are as follows:
+
 // yahoo.com
 // object
 // Basic Tutorial Network
@@ -241,3 +445,22 @@ $obj2->printHello(); // prints Public, Protected2 and Undefined
 // PublicPublic
 // Protected2
 // Protected
+// constant value
+// constant value
+// constant value
+// constant value
+// ConcreteClass1
+// FOO_ConcreteClass1
+// ConcreteClass2
+// FOO_ConcreteClass2
+// Mr. Pacman
+// Mrs. Pacwoman
+// foo
+// foo
+
+// ChildClass::moreTesting() called
+
+// Constructor in the BaseClass class
+// Constructor in the BaseClass class
+// Constructor in SubClass class
+// Constructor in the BaseClass class
